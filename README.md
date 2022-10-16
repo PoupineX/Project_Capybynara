@@ -5,4 +5,4 @@ Un jeu vidéo permettant a des élèves débutant la spé NSI de réviser l'appr
 
 Jeu sous la forme d'un QCM à interface graphique.
 
-Version BÊTA, en cours de développement.
+Version BETA, en cours de développement.

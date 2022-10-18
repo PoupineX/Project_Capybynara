@@ -1,10 +1,11 @@
 import pygame
 from player import Player
 from portal import Portal
+
 pygame.init() 
 
-
-
+info = pygame.display.Info()
+SIZE = WIDTH, HEIGHT = info.current_w - 60, info.current_h - 60
 
 class Game:
 
@@ -12,12 +13,12 @@ class Game:
         self.is_playing = True
         self.player = Player()
         #self.all_portals = Portal(1600, 750) #and Portal(1600, 400)
-        self.portal_s1 = Portal(1600, 810)
-        self.portal_s2 = Portal(1600, 450)
-        self.portal_s3 = Portal(1600, 90)
-        self.portal_s4 = Portal(1100, 810)
-        self.portal_s5 = Portal(1100, 450)
-        self.portal_s6 = Portal(1100, 90)
+        self.portal_s1 = Portal(WIDTH - 300, HEIGHT - 250)
+        self.portal_s2 = Portal(WIDTH - 300, HEIGHT - 600)
+        self.portal_s3 = Portal(WIDTH - 300, HEIGHT - 950)
+        self.portal_s4 = Portal(WIDTH - 800, HEIGHT - 250)
+        self.portal_s5 = Portal(WIDTH - 800, HEIGHT - 600)
+        self.portal_s6 = Portal(WIDTH - 800, HEIGHT - 950)
         self.pressed = {}
 
 

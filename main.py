@@ -7,7 +7,7 @@ info = pygame.display.Info()
 SIZE = WIDTH, HEIGHT = info.current_w - 60, info.current_h - 60
 screen = pygame.display.set_mode(SIZE)
 # generer la fenêtre de jeu
-pygame.display.set_caption("Binary learning")
+pygame.display.set_caption("Capybynara")
 
 
 # importer l'arriere-plan

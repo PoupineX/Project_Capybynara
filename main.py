@@ -29,11 +29,13 @@ nbin_d = [256, 175, 89, 243, 257, 512, 524, 532, 1024, 1064]    # QCM difficile
 
 # nbin1 est choisit aleatoirement dans la liste ( facile pour l'instant ), c'est la "bonne reponse"
 nbin1 = random.choice(nbin_f)
+nbin2 = random.choice(nbin_m)
+nbin3 = random.choice(nbin_d)
 
 # la meme "bonne reponse" en binaire
 nbin1_atr = bin(random.choice(nbin_f))
-nbin2 = random.choice(nbin_m)
-nbin3 = random.choice(nbin_d)
+nbin2_atr = bin(random.choice(nbin_m))
+nbin3_atr = bin(random.choice(nbin_d))
 
 # Crée un affichage pour la bonne reponse a trouver en binaire
 questions = font.render(str(nbin1), 1, pygame.Color("White"))

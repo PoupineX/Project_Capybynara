@@ -2,6 +2,7 @@ import pygame
 import random
 import math
 from game import Game
+from player import Player
 
 pygame.init()
 info = pygame.display.Info()
@@ -80,7 +81,26 @@ def i_nbin1(list):
             b_rep = i
     return b_rep
 
-print(i_nbin1(L1))
+
+def bon_portal(g,i):
+    if i==0:
+        g.portal_s1.reponse= True
+    elif i==1:
+        g.portal_s2.reponse= True
+    elif i==2:
+        g.portal_s3.reponse= True
+    elif i==3:
+        g.portal_s4.reponse= True
+    elif i==4:
+        g.portal_s5.reponse= True
+    elif i==5:
+        g.portal_s6.reponse= True
+
+
+
+
+
+
 
 # appliquer a l'écran les reponses pour le QCM
 response1 = font.render(str(bin(L1[0])), 1, pygame.Color("Red"))    # Avant c'etait : response1 = font.render(str(nbin1_atr), 1, pygame.Color("Red"))
@@ -98,20 +118,28 @@ intro = pygame.image.load("assets_NSI/capy.png")
 intro_rect = intro.get_rect()
 intro_rect.x = 0
 intro_rect.y = -140
-intro_txt = font.render("Welcome !", 1, pygame.Color("Green"))
+intro_txt = font.render("Welcome !", 1, pygame.Color("Brown"))
+intro_txt2 = font.render("Press the space bar to go to the menu", 1, pygame.Color("Brown"))
 play_button = pygame.image.load("assets_NSI/start_btn.png")
 play_button = pygame.transform.scale(play_button, (400, 150))
 play_button_rect = play_button.get_rect()
 play_button_rect.x = math.ceil(WIDTH / 3 + 100)
 play_button_rect.y = math.ceil(HEIGHT / 2 - 100)
 
+# Jeu perdu
+game_over_txt = font.render("Perdu looser", 1, pygame.Color("Brown"))
+
 game = Game()
+player = Player()
+i_reponse=i_nbin1(L1)
+bon_portal(game,i_reponse)
+
 running = True
 clock = pygame.time.Clock()
 
 # boucle tant que cette condition est vraie
 while running:
-    
+ 
     # rafraichir a 60 images par seconde
     clock.tick(60)
 
@@ -120,7 +148,8 @@ while running:
 
     if game.is_playing:
         game.update(screen)
-
+        
+        
         # appliquer le nombre a trouver en haut de l'écran
         screen.blit(questions, (WIDTH // 2 - 60, 20))
 
@@ -131,15 +160,26 @@ while running:
         screen.blit(response3, (game.portal_s3.rect))
         screen.blit(response2, (game.portal_s2.rect))    
         screen.blit(response1, (game.portal_s1.rect))
+        
     else:
         # afficher ecran d'intro
         screen.blit(intro, (intro_rect.x, intro_rect.y))
         screen.blit(play_button, (play_button_rect.x, play_button_rect.y))
-        screen.blit(intro_txt, (WIDTH // 2 - 200, 20)) 
-
+        screen.blit(intro_txt, (WIDTH // 2 - 200, 20))
+        screen.blit(intro_txt2, (WIDTH // 2 - 600, 120))
+        
+        if player.hp == 0:
+            done = True
+            running = False
+            pygame.quit()
+                    #screen.blit(game_over_txt)
 
     # mettre a jour l'écran
     pygame.display.flip()
+
+    # game over
+        
+
     #while not done:
 # si le joueur ferme cette fenêtre
     for event in pygame.event.get():
@@ -157,4 +197,5 @@ while running:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if play_button_rect.collidepoint(event.pos):
                 pygame.draw.rect(screen, (255, 0, 0), play_button_rect, 1)
+                #game.update(screen)
                 game.is_playing = True

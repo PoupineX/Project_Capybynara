@@ -10,11 +10,11 @@ class Player(pygame.sprite.Sprite):
         self.rect.x = 100
         self.rect.y = 390
         self.velocity = 30
-        self.hp = 100
+        self.hp = 99
 
     def update_hp_bar(self, surface):
         bar_color = (111, 210, 46)
-        bar_position = [self.rect.x, self.rect.y - 10, self.hp, 5]
+        bar_position = [self.rect.x, self.rect.y - 20, self.hp, 10]
         pygame.draw.rect(surface, bar_color, bar_position)
 
     def move_right(self):

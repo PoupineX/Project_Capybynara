@@ -1,7 +1,7 @@
 import pygame
 from player import Player
 from portal import Portal
-pygame.init() 
+pygame.init()
 
 info = pygame.display.Info()
 SIZE = WIDTH, HEIGHT = info.current_w - 60, info.current_h - 60
@@ -15,23 +15,17 @@ class Game:
         self.is_playing = False
         self.player = Player()
         #self.all_portals = Portal(1600, 750) #and Portal(1600, 400)
-        self.portal_s1 = Portal(WIDTH - 300, HEIGHT - 250,False)
-        self.portal_s2 = Portal(WIDTH - 300, HEIGHT - 600,False)
-        self.portal_s3 = Portal(WIDTH - 300, HEIGHT - 950,False)
-        self.portal_s4 = Portal(WIDTH - 800, HEIGHT - 250,False)
-        self.portal_s5 = Portal(WIDTH - 800, HEIGHT - 600,False)
-        self.portal_s6 = Portal(WIDTH - 800, HEIGHT - 950,False)
+        self.portal_s1 = Portal(WIDTH - WIDTH // 6.2, HEIGHT - HEIGHT // 4, False)
+        self.portal_s2 = Portal(WIDTH - WIDTH // 6.2, HEIGHT - HEIGHT // 1.7, False)
+        self.portal_s3 = Portal(WIDTH - WIDTH // 6.2, HEIGHT - HEIGHT // 1.07, False)
+        self.portal_s4 = Portal(WIDTH - WIDTH // 2.325, HEIGHT - HEIGHT // 4, False)
+        self.portal_s5 = Portal(WIDTH - WIDTH // 2.325, HEIGHT - HEIGHT // 1.7, False)
+        self.portal_s6 = Portal(WIDTH - WIDTH // 2.325, HEIGHT - HEIGHT // 1.07, False)
         self.pressed = {}
 
 
     def update(self, screen):
-
-        # appliquer l'image du joueur a l'écran
-        screen.blit(self.player.image, self.player.rect)
-
-        # mettre à jour les hp du joueur
-        self.player.update_hp_bar(screen)
-
+        
         # appliquer les images du groupe de portails
         #game.portal.draw(screen)
 
@@ -41,6 +35,13 @@ class Game:
         screen.blit(self.portal_s4.image, self.portal_s4.rect)
         screen.blit(self.portal_s5.image, self.portal_s5.rect)
         screen.blit(self.portal_s6.image, self.portal_s6.rect)
+        
+        # appliquer l'image du joueur a l'écran
+        screen.blit(self.player.image, self.player.rect)
+
+        # mettre à jour les hp du joueur
+        self.player.update_hp_bar(screen)
+
 
         # deplacement directionnel
         if self.pressed.get(pygame.K_RIGHT) and self.player.rect.x + self.player.rect.width < screen.get_width():
@@ -63,6 +64,7 @@ class Game:
                  screen.blit(bravo, (WIDTH // 2 - 850, 20))
             else:
                 self.player.hp -= 2
+                #screen.blit(self.player.image, (self.player.rect.x, self.player.rect.y))
         
         if self.player.rect.colliderect(self.portal_s2.rect):
             pygame.draw.rect(screen, (255, 0, 0), self.player.rect, 1)
@@ -71,6 +73,7 @@ class Game:
                  screen.blit(bravo, (WIDTH // 2 - 850, 20))
             else:
                 self.player.hp -= 2
+                #screen.blit(self.player.image, (self.player.rect.x, self.player.rect.y))
        
         if self.player.rect.colliderect(self.portal_s3.rect):
             pygame.draw.rect(screen, (255, 0, 0), self.player.rect, 1)
@@ -79,6 +82,7 @@ class Game:
                  screen.blit(bravo, (WIDTH // 2 - 850, 20))
             else:
                 self.player.hp -= 2
+                #screen.blit(self.player.image, (self.player.rect.x, self.player.rect.y))
         
         if self.player.rect.colliderect(self.portal_s4.rect):
             pygame.draw.rect(screen, (255, 0, 0), self.player.rect, 1)
@@ -87,6 +91,7 @@ class Game:
                  screen.blit(bravo, (WIDTH // 2 - 850, 20))
             else:
                 self.player.hp -= 2
+                #screen.blit(self.player.image, (self.player.rect.x, self.player.rect.y))
         
         if self.player.rect.colliderect(self.portal_s5.rect):
             pygame.draw.rect(screen, (255, 0, 0), self.player.rect, 1)
@@ -95,6 +100,7 @@ class Game:
                  screen.blit(bravo, (WIDTH // 2 - 850, 20))
             else:
                 self.player.hp -= 2
+                #screen.blit(self.player.image, (self.player.rect.x, self.player.rect.y))
 
             
         if self.player.rect.colliderect(self.portal_s6.rect):
@@ -104,4 +110,5 @@ class Game:
                  screen.blit(bravo, (WIDTH // 2 - 850, 20))
             else:
                 self.player.hp -= 2
+                #screen.blit(self.player.image, (self.player.rect.x, self.player.rect.y))
 
